@@ -452,6 +452,13 @@ function startProcessingLoop() {
 }
 
 // 5. Ball Spawner
+const ballImageSrcs = ['assets/IMG_6659.PNG', 'assets/IMG_6660.PNG'];
+const ballImages = ballImageSrcs.map(src => {
+    const img = new Image();
+    img.src = src;
+    return img;
+});
+
 let balls = [];
 let lastSpawnTime = 0;
 
@@ -481,15 +488,23 @@ function spawnBall() {
     const xPos = window.innerWidth * xPct;
     const rest = parseFloat(sliders.restitution.value);
 
-    const radius = 25; // Constant radius
+    const radius = 40;
+    const diameter = radius * 2;
     const jitter = (Math.random() - 0.5) * 50;
+
+    const img = ballImages[Math.floor(Math.random() * ballImages.length)];
+    const xScale = img.naturalWidth > 0 ? diameter / img.naturalWidth : 1;
+    const yScale = img.naturalHeight > 0 ? diameter / img.naturalHeight : 1;
 
     const ball = Bodies.circle(xPos + jitter, -30, radius, {
         restitution: rest,
         friction: 0.05,
         render: {
-            fillStyle: '#ffffffad', // Red
-            lineWidth: 0
+            sprite: {
+                texture: img.src,
+                xScale: xScale,
+                yScale: yScale
+            }
         }
     });
 
