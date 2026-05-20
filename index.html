@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Ball Drop Sim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ui-panel">
+        <h2>Physics Controls</h2>
+        
+        <div class="control-group">
+            <label>Spawn Interval (<span id="interval-val">200</span>ms)</label>
+            <input type="range" id="spawn-interval" min="50" max="2000" value="200">
+        </div>
+
+
+        <div class="control-group">
+            <label>Spawn X Position (<span id="spawn-x-val">50</span>%)</label>
+            <input type="range" id="spawn-x" min="10" max="90" value="50">
+        </div>
+
+        <div class="control-group">
+            <label>Ball Bounciness (<span id="restitution-val">0.8</span>)</label>
+            <input type="range" id="restitution" min="0" max="1" step="0.1" value="0.8">
+        </div>
+
+        <h2>Color Detection</h2>
+        
+        <div class="control-group">
+            <label>Target Color</label>
+            <input type="color" id="target-color" value="#ff1493" style="width:100%; height:40px; cursor:pointer; padding:0; border:none; border-radius:4px;">
+            <label style="margin-top:10px;">Color Tolerance (<span id="color-tolerance-val">20</span>)</label>
+            <input type="range" id="color-tolerance" min="1" max="90" value="20">
+        </div>
+
+        <div class="control-group">
+            <label>Saturation Min (<span id="s-min-val">80</span>)</label>
+            <input type="range" id="s-min" min="0" max="255" value="80">
+        </div>
+
+        <div class="control-group">
+            <label>Value/Lightness Min (<span id="v-min-val">80</span>)</label>
+            <input type="range" id="v-min" min="0" max="255" value="80">
+        </div>
+
+        <div class="control-group">
+            <label>Box Opacity (<span id="box-opacity-val">100</span>%)</label>
+            <input type="range" id="box-opacity" min="0" max="100" value="100">
+        </div>
+        
+
+        <div class="control-group" style="display: flex; align-items: center; justify-content: space-between;">
+            <label for="cam-flip" style="margin-bottom: 0;">Mirror Camera (Horizontal Flip)</label>
+            <input type="checkbox" id="cam-flip" checked style="width: 20px; height: 20px;">
+        </div>
+        
+        <div class="control-group">
+            <label>Camera Input</label>
+            <select id="camera-select" style="width:100%; padding:8px; background:#4a4a4a; color:white; border:none; border-radius:4px; margin-top:5px; font-family:inherit;">
+                <option value="">Default Camera</option>
+            </select>
+        </div>
+
+
+        <button id="start-btn">Start Webcam</button>
+        <button id="toggle-bg-btn">Toggle Webcam BG</button>
+        <button id="clear-balls">Clear Balls</button>
+        <div class="status" id="status-msg">Waiting to start...</div>
+        <div style="font-size: 0.8rem; color: #aaa; text-align: center; margin-top: 10px;">Press 'H' to hide/show UI panel</div>
+        <div style="font-size: 0.85rem; color: #888; text-align: center; margin-top: 25px;">Created by Bunyan<br><a href="https://instagram.com/bongyunng" target="_blank" style="color: #00d2ff; text-decoration: none;">IG: @bongyunng</a></div>
+    </div>
+    
+    <div id="video-bg-container">
+        <canvas id="video-bg"></canvas>
+    </div>
+    
+    <div id="canvas-container">
+        <!-- Matter.js injects canvas here -->
+    </div>
+
+
+    <!-- Hidden elements for webcam data processing -->
+    <video id="webcam" autoplay playsinline style="display:none;"></video>
+    <canvas id="hidden-canvas" style="display:none;"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script async src="https://docs.opencv.org/4.8.0/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script src="app.js?v=2.0"></script>
+</body>
+</html>
