@@ -485,7 +485,7 @@ function startSpawner() {
 
 function spawnBall() {
     const xPct = parseInt(sliders.spawnX.value) / 100;
-    const xPos = window.innerWidth * xPct;
+    const xPos = Math.random() * window.innerWidth * 0.5 + window.innerWidth * 0.25; // default to center half of screen
     const rest = parseFloat(sliders.restitution.value);
 
     const radius = 120;
