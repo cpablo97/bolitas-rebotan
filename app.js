@@ -488,7 +488,7 @@ function spawnBall() {
     const xPos = window.innerWidth * xPct;
     const rest = parseFloat(sliders.restitution.value);
 
-    const radius = 80;
+    const radius = 120;
     const diameter = radius * 2;
     const jitter = (Math.random() - 0.5) * 50;
 
