@@ -493,8 +493,8 @@ function spawnBall() {
     const jitter = (Math.random() - 0.5) * 50;
 
     const img = ballImages[Math.floor(Math.random() * ballImages.length)];
-    const xScale = img.naturalWidth > 0 ? diameter / img.naturalWidth : 1;
-    const yScale = img.naturalHeight > 0 ? diameter / img.naturalHeight : 1;
+    const xScale = img.naturalWidth > 0 ? diameter / img.naturalWidth : 5;
+    const yScale = img.naturalHeight > 0 ? diameter / img.naturalHeight : 5;
 
     const ball = Bodies.circle(xPos + jitter, -30, radius, {
         restitution: rest,
